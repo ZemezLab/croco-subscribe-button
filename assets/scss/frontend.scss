@@ -1,0 +1,54 @@
+$primary: #34D7A1;
+$invert: #ffffff;
+
+.croco-subscribe-btn-container {
+	position: fixed;
+	z-index: 999999;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	overflow: hidden;
+}
+
+.croco-subscribe-btn {
+	display: flex;
+	align-items: center;
+	padding: 5px 12px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	line-height: 23px;
+	font-weight: 700;
+	color: $invert;
+	background-color: $primary;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	transition: .25s;
+
+	transform: translateX( 177px ); // for ie
+	transform: translateX(calc(100% - 60px));
+
+	&:hover {
+		color: $invert;
+		transform: translateX(0);
+
+		.croco-subscribe-btn__price-suffix {
+			transform: translateX(0);
+		}
+	}
+
+	&__price {
+		font-size: 21px;
+		line-height: 30px;
+	}
+
+	&__price-suffix {
+		font-weight: 400;
+		margin-right: 11px;
+		transform: translateX(15px);
+	}
+
+	&__text {
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+} 
