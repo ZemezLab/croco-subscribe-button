@@ -91,6 +91,7 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 			// Internationalize the text strings used.
 			add_action( 'init', array( $this, 'lang' ), -999 );
 
+			// Init.
 			add_action( 'init', array( $this, 'init' ), -999 );
 
 			// Enqueue public assets.
@@ -108,11 +109,7 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 		 * Init.
 		 */
 		public function init() {
-			if ( ! isset( $_GET['croco_subs_btn_clear_cache'] ) ) {
-				return;
-			}
-
-			delete_transient( $this->transient_key );
+			$this->delete_cache_handle();
 		}
 
 		/**
@@ -158,11 +155,27 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 		}
 
 		/**
+		 * Delete cache handle.
+		 */
+		public function delete_cache_handle() {
+			if ( ! isset( $_GET['croco_subs_btn_clear_cache'] ) ) {
+				return;
+			}
+
+			delete_transient( $this->transient_key );
+		}
+
+		/**
 		 * Enqueue public assets.
 		 */
 		public function enqueue_assets() {
 			wp_enqueue_style( 'croco-subscribe-button', $this->plugin_url( 'assets/css/frontend.css' ), false, $this->get_version() );
-			wp_enqueue_style( 'croco-subscribe-button-fonts', $this->get_fonts_url(), false, null );
+
+			if ( class_exists( 'Elementor\Plugin' ) ) {
+				Elementor\Plugin::$instance->frontend->enqueue_font( 'Roboto' );
+			} else {
+				wp_enqueue_style( 'croco-subscribe-button-fonts', $this->get_fonts_url(), false, null );
+			}
 		}
 
 		/**
