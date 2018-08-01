@@ -73,6 +73,13 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 		private $remote_data_url = 'https://raw.githubusercontent.com/ZemezLab/croco-price-data/master/data.json';
 
 		/**
+		 * Transient key.
+		 *
+		 * @var string
+		 */
+		private $transient_key = 'croco_subscribe_button_settings';
+
+		/**
 		 * Sets up needed actions/filters for the plugin to initialize.
 		 *
 		 * @since 1.0.0
@@ -84,7 +91,7 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 			// Internationalize the text strings used.
 			add_action( 'init', array( $this, 'lang' ), -999 );
 
-			//add_action( 'init', array( $this, 'init' ), -999 );
+			add_action( 'init', array( $this, 'init' ), -999 );
 
 			// Enqueue public assets.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ));
@@ -95,6 +102,17 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 			// Register activation and deactivation hook.
 			register_activation_hook( __FILE__, array( $this, 'activation' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
+		}
+
+		/**
+		 * Init.
+		 */
+		public function init() {
+			if ( ! isset( $_GET['croco_subs_btn_clear_cache'] ) ) {
+				return;
+			}
+
+			delete_transient( $this->transient_key );
 		}
 
 		/**
@@ -109,7 +127,7 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 
 			$this->settings = array( 'price' => 49 ); // default settings
 
-			$settings = get_transient( 'croco_subscribe_button_settings' );
+			$settings = get_transient( $this->transient_key );
 
 			if ( ! $settings ) {
 
@@ -131,7 +149,7 @@ if ( ! class_exists( 'Croco_Subscribe_Button' ) ) {
 					return $this->settings;
 				}
 
-				set_transient( 'croco_subscribe_button_settings', $settings, DAY_IN_SECONDS );
+				set_transient( $this->transient_key, $settings, DAY_IN_SECONDS );
 			}
 
 			$this->settings = wp_parse_args( $settings, $this->settings );
