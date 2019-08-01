@@ -1,33 +1,54 @@
 $primary: #34D7A1;
+$secondary: #617BE5;
+$hover: #162B40;
 $invert: #ffffff;
 
 .croco-subscribe-btn-container {
 	position: fixed;
 	z-index: 999999;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
-	overflow: hidden;
+	display: flex;
+	bottom: 15%;
+	right: 20px;
 }
 
 .croco-subscribe-btn {
+	width: 138px;
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	padding: 5px 12px;
+	margin: 0 7px;
+	padding: 10px 0;
 	font-family: 'Roboto', sans-serif;
-	font-size: 13px;
-	line-height: 23px;
+	font-size: 16px;
+	line-height: 26px;
 	font-weight: 700;
 	color: $invert;
 	background-color: $primary;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
+	border-radius: 4px;
 	transition: .25s;
+	
+	
+	animation-name: fadeUp;
+	animation-fill-mode: both;
+	animation-duration: 0.4s;
+	animation-timing-function: ease;
+	animation-delay: 1.5s;
+	
+	&.secondary {
+		background-color: $secondary;
+		
+		animation-name: fadeUp;
+		animation-fill-mode: both;
+		animation-duration: 0.4s;
+		animation-timing-function: ease;
+		animation-delay: 1.75s;
+	}
 
-	transform: translateX( 177px ); // for ie
-	transform: translateX(calc(100% - 60px));
+	//transform: translateX( 177px ); // for ie
+	//transform: translateX(calc(100% - 60px));
 
 	&:hover {
+		background-color: $hover;
 		color: $invert;
 		transform: translateX(0);
 
@@ -36,19 +57,33 @@ $invert: #ffffff;
 		}
 	}
 
-	&__price {
-		font-size: 21px;
-		line-height: 30px;
-	}
+	&__price {}
 
-	&__price-suffix {
-		font-weight: 400;
-		margin-right: 11px;
-		transform: translateX(15px);
-	}
+	&__price-suffix {}
 
 	&__text {
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		margin: 0 6px;
 	}
-} 
+}
+
+
+@keyframes fadeUp {
+	0% {
+		filter: alpha(opacity=0);
+		opacity: 0;
+		-webkit-transform: translateY(50%);
+		-moz-transform: translateY(50%);
+		-ms-transform: translateY(50%);
+		-o-transform: translateY(50%);
+		transform: translateY(50%);
+	}
+	100% {
+		filter: alpha(opacity=100);
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		-moz-transform: translateY(0);
+		-ms-transform: translateY(0);
+		-o-transform: translateY(0);
+		transform: translateY(0);
+	}
+}

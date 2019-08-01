@@ -5,12 +5,21 @@
 
 $settings = $this->get_settings();
 $price    = $settings['price'];
+
 ?>
 
 <div class="croco-subscribe-btn-container">
 	<a class="croco-subscribe-btn" href="https://crocoblock.com/pricing/" target="_blank">
-		<span class="croco-subscribe-btn__price">$<?php echo $price; ?></span>
-		<span class="croco-subscribe-btn__price-suffix"><?php esc_html_e( '/per year', 'croco-subscribe-button' ); ?></span>
-		<span class="croco-subscribe-btn__text"><?php esc_html_e( 'Subscribe now!', 'croco-subscribe-button' ); ?></span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+			<path d="M6.1875 18.625C6.1875 19.1979 5.98698 19.6849 5.58594 20.0859C5.1849 20.487 4.69792 20.6875 4.125 20.6875C3.55208 20.6875 3.0651 20.487 2.66406 20.0859C2.26302 19.6849 2.0625 19.1979 2.0625 18.625C2.0625 18.0521 2.26302 17.5651 2.66406 17.1641C3.0651 16.763 3.55208 16.5625 4.125 16.5625C4.69792 16.5625 5.1849 16.763 5.58594 17.1641C5.98698 17.5651 6.1875 18.0521 6.1875 18.625ZM20.625 18.625C20.625 19.1979 20.4245 19.6849 20.0234 20.0859C19.6224 20.487 19.1354 20.6875 18.5625 20.6875C17.9896 20.6875 17.5026 20.487 17.1016 20.0859C16.7005 19.6849 16.5 19.1979 16.5 18.625C16.5 18.0521 16.7005 17.5651 17.1016 17.1641C17.5026 16.763 17.9896 16.5625 18.5625 16.5625C19.1354 16.5625 19.6224 16.763 20.0234 17.1641C20.4245 17.5651 20.625 18.0521 20.625 18.625ZM3.4375 12.4375H17.875C18.0326 12.4375 18.1686 12.3874 18.2832 12.2871C18.4121 12.1868 18.498 12.0651 18.541 11.9219L20.6035 3.67188C20.6322 3.57161 20.6322 3.47135 20.6035 3.37109C20.5892 3.25651 20.5462 3.15625 20.4746 3.07031C20.4173 2.98438 20.3385 2.91992 20.2383 2.87695C20.138 2.83398 20.0378 2.8125 19.9375 2.8125H3.4375V0.75C3.4375 0.563802 3.36589 0.40625 3.22266 0.277344C3.09375 0.134115 2.9362 0.0625 2.75 0.0625H0V1.4375H2.0625V14.5C2.0625 14.6862 2.12695 14.8509 2.25586 14.9941C2.39909 15.123 2.5638 15.1875 2.75 15.1875H22V13.8125H3.4375V12.4375Z" fill="white"/>
+		</svg>
+		<span class="croco-subscribe-btn__text"><?php esc_html_e( 'Buy', 'croco-subscribe-button' ); ?></span>
+	</a>
+
+	<a class="croco-subscribe-btn secondary" href="#" target="_blank">
+		<span class="croco-subscribe-btn__text"><?php esc_html_e( 'Learn more', 'croco-subscribe-button' ); ?></span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13" fill="none">
+			<path d="M2.125 12.5273L7.90234 6.75L2.125 0.972656L0.0976562 3L3.84766 6.75L0.0976562 10.5L2.125 12.5273Z" fill="white"/>
+		</svg>
 	</a>
 </div>
